@@ -3,7 +3,7 @@ import axios from "axios";
 const KEY = "AIzaSyCHUCmpR7cT_yDFHC98CZJy2LTms-IwDlM";
 
 const Convert = ({ languange, text }) => {
-  const [translation, setTranslation] = useState(null);
+  const [translation, setTranslation] = useState("");
 
   useEffect(() => {
     const translate = async () => {
@@ -12,26 +12,13 @@ const Convert = ({ languange, text }) => {
       const requestQueryStrings = {
         params: {
           q: text,
-          target: languange,
-          key: KEY
-        }
+          target: languange.value,
+          key: KEY,
+        },
       };
-      const translatedWord = await axios.post(
-        URL,
-        requestBody,
-        requestQueryStrings
-      );
-      // const translatedWord = await axios.get("url", {
-      //   key: KEY,
-      //   q: text,
-      //   languange: languange
-      // });
-      // setTranslation(translatedWord);
-
-      console.log(translatedWord);
+      const { data } = await axios.post(URL, requestBody, requestQueryStrings);
       setTranslation("Hola");
     };
-    console.log("something changed", languange, text);
     translate();
   }, [languange, text]);
 

@@ -26,7 +26,7 @@ const Translate = () => {
         options={options}
       />
       <h3 className="ui header">Output</h3>
-      {term ? <Convert languange={selectedLang.value} text={term} /> : null}
+      {term ? <Convert languange={selectedLang} text={term} /> : null}
     </div>
   );
 };

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 // import SearchBar from "./SearchBar";
 // import DropDown from "./Dropdown";
-import Translate from "./Translate";
+import Translate from "./T";
 
 const items = [
   { label: "Red", value: "red" },
   { label: "Blue", value: "blue" },
-  { label: "Green", value: "green" }
+  { label: "Green", value: "green" },
 ];
 const App = (props) => {
   const [selectedColor, setColor] = useState(items[0]);

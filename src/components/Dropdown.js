@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 const Dropdown = ({ options, setSelected, selected, label }) => {
   const [open, setOpen] = useState(false);
   const myRef = useRef();
+
   useEffect(() => {
     const onBodyClick = (e) => {
       if (myRef.current.contains(e.target)) return;
@@ -38,9 +39,9 @@ const Dropdown = ({ options, setSelected, selected, label }) => {
   const classes = {
     true: {
       key1: "ui selection dropdown visible active",
-      key2: "menu visible transition"
+      key2: "menu visible transition",
     },
-    false: { key1: "ui selection dropdown", key2: "menu" }
+    false: { key1: "ui selection dropdown", key2: "menu" },
   };
   return (
     <div ref={myRef} className="ui form">
