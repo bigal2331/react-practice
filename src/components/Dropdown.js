@@ -1,23 +1,28 @@
 import React, { useState, useEffect, useRef } from "react";
 
-const Dropdown = ({ options, setColor, selectedColor }) => {
+const Dropdown = ({ options, setSelected, selected, label }) => {
   const [open, setOpen] = useState(false);
   const myRef = useRef();
   useEffect(() => {
-    document.body.addEventListener("click", (e) => {
+    const onBodyClick = (e) => {
       if (myRef.current.contains(e.target)) return;
       setOpen(false);
-    });
+    };
+    document.body.addEventListener("click", onBodyClick);
+
+    return () => {
+      document.body.removeEventListener("click", onBodyClick);
+    };
   }, []);
 
   const renderedOptions = options.map((option) => {
-    if (option.value === selectedColor.value) return null;
+    if (option.value === selected.value) return null;
 
     return (
       <div
         className={`item`}
         onClick={() => {
-          setColor(option);
+          setSelected(option);
         }}
         key={option.value}
         value={option}
@@ -33,17 +38,17 @@ const Dropdown = ({ options, setColor, selectedColor }) => {
   const classes = {
     true: {
       key1: "ui selection dropdown visible active",
-      key2: "menu visible transition",
+      key2: "menu visible transition"
     },
-    false: { key1: "ui selection dropdown", key2: "menu" },
+    false: { key1: "ui selection dropdown", key2: "menu" }
   };
   return (
     <div ref={myRef} className="ui form">
       <div className="field">
-        <label className="label">Select Color</label>
+        <label className="label">{label}</label>
         <div className={classes[open].key1} onClick={onDropdownClick}>
           <i className="dropdown icon"></i>
-          <div className="text">{selectedColor.label}</div>
+          <div className="text">{selected.label}</div>
           <div className={classes[open].key2}>{renderedOptions}</div>
         </div>
       </div>
