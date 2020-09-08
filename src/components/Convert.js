@@ -13,8 +13,8 @@ const Convert = ({ languange, text }) => {
         params: {
           q: text,
           target: languange.value,
-          key: KEY,
-        },
+          key: KEY
+        }
       };
       const { data } = await axios.post(URL, requestBody, requestQueryStrings);
       setTranslation("Hola");
